@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canva-like Editor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="auth">
+        <button id="login">Login with Google</button>
+    </div>
+    <div id="editor">
+        <div id="canvas-container">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div id="toolbar">
+            <button id="addImage">Add Image</button>
+            <button id="addVideo">Add Video</button>
+            <button id="addText">Add Text</button>
+            <button id="applyFilter">Apply Grayscale Filter</button>
+            <input type="file" id="uploadAsset" accept="image/*,video/*">
+            <button id="save">Save Project</button>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+    <script src="https://cdn.rawgit.com/antimatter15/whammy/master/whammy.js"></script>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js';
+        import { getAuth, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
+        import { getDatabase, ref, onValue, set, push } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js';
+        import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js';
+
+        // Make Firebase services available globally
+        window.initializeApp = initializeApp;
+        window.getAuth = getAuth;
+        window.signInWithPopup = signInWithPopup;
+        window.GoogleAuthProvider = GoogleAuthProvider;
+        window.getDatabase = getDatabase;
+        window.ref = ref;
+        window.onValue = onValue;
+        window.set = set;
+        window.push = push;
+        window.getStorage = getStorage;
+        window.storageRef = storageRef;
+        window.uploadBytes = uploadBytes;
+        window.getDownloadURL = getDownloadURL;
+    </script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
